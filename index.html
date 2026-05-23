@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morphing Glass Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="scene">
+        <!-- Main Morphing Card -->
+        <div class="clock-card" id="clock-card" data-state="0">
+            
+            <!-- STATE 0: Analog Face (Primary) -->
+            <div class="face analog-face">
+                <div class="marker twelve"></div>
+                <div class="marker three"></div>
+                <div class="marker six"></div>
+                <div class="marker nine"></div>
+                <div class="hand hour" id="hand-h"></div>
+                <div class="hand min" id="hand-m"></div>
+                <div class="hand sec" id="hand-s"></div>
+                <div class="center-dot"></div>
+            </div>
+
+            <!-- STATE 1: Digital Face (Secondary) -->
+            <div class="face digital-face">
+                <div class="time-display" id="dig-time">00:00:00</div>
+                <div class="date-display" id="dig-date">JAN 01</div>
+            </div>
+
+            <!-- STATE 2: Ring Reactor -->
+            <div class="face ring-face">
+                <svg class="ring-svg" viewBox="0 0 200 200">
+                    <!-- Seconds (Outer) -->
+                    <circle class="track" cx="100" cy="100" r="90"></circle>
+                    <circle class="progress" id="ring-s" cx="100" cy="100" r="90"></circle>
+                    <!-- Minutes (Middle) -->
+                    <circle class="track" cx="100" cy="100" r="70"></circle>
+                    <circle class="progress" id="ring-m" cx="100" cy="100" r="70"></circle>
+                    <!-- Hours (Inner) -->
+                    <circle class="track" cx="100" cy="100" r="50"></circle>
+                    <circle class="progress" id="ring-h" cx="100" cy="100" r="50"></circle>
+                </svg>
+                <div class="mini-time" id="ring-time-text">12:00</div>
+            </div>
+
+            <!-- HIDDEN: Infinity Mode -->
+            <div class="infinity-overlay">
+                <div class="infinity-symbol">∞</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Toggle -->
+    <button class="fullscreen-toggle" id="fullscreen-toggle" aria-label="Toggle Fullscreen">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+    </button>
+
+    <!-- Settings UI -->
+    <button class="settings-toggle" id="settings-toggle" aria-label="Settings">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+    </button>
+
+    <div class="settings-panel" id="settings-panel">
+        <div class="setting-group">
+            <label>Theme Presets</label>
+            <select id="bgSelect">
+                <option value="neon">Neon Sunset</option>
+                <option value="midnight">Midnight Pro</option>
+                <option value="emerald">Emerald Dev</option>
+                <option value="fire">Crimson Fire</option>
+                <option value="cyber">Cyberpunk City</option>
+                <option value="ocean">Oceanic Depth</option>
+                <option value="carbon">Carbon Monolith</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+        <div class="setting-group">
+            <label>Clock Size</label>
+            <input type="range" id="scale-slider" min="0.5" max="1.5" step="0.1" value="1">
+        </div>
+        <div class="setting-group">
+            <label>Primary Color</label>
+            <input type="color" id="set-primary" value="#00f3ff">
+        </div>
+        <div class="setting-group">
+            <label>Accent Color</label>
+            <input type="color" id="set-secondary" value="#bc13fe">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
