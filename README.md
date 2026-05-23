@@ -5,9 +5,10 @@ Morphing Glass Clock
 
 1. HTML
 2. CSS
-3. Responsive CSS
-4. Animation CSS
-5. Some images
+3. JavaScript
+4. Responsive CSS
+5. Animation CSS
+6. Some images
 # Clone THis Repo
 ``` 
 git clone https://github.com/devloperrayhan/Morphing-Glass-Clock.git
