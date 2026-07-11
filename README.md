@@ -51,7 +51,7 @@ git clone https://github.com/iamdeveloperrayhan/interactive-clock.git
 ---
 
 ## 🚀 Live Demo
-[Click Here to View](https://iamdeveloperrayhan.github.io/Morphing-Glass-Clock/)
+[Click Here to View](https://iamdeveloperrayhan.github.io/interactive-clock/)
 
 ---
 
