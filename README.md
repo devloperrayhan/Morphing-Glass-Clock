@@ -59,14 +59,15 @@ git clone https://github.com/iamdeveloperrayhan/interactive-clock.git
 ## 📂 Project Structure
 
 Interactive-Clock/
-
 │
 ├── index.html
 ├── style.css
 ├── script.js
+├── image.png
+├── Screenshot_1.png
+├── Screenshot_2.png
+├── image.png
 └── README.md
-└── image.png
-
 ---
 
 ## 👨‍💻 Author
